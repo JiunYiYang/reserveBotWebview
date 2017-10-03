@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <div fxFlex>
+    <div>
+      <h1 style="margin: 20px 20px">預約餐廳</h1>
+    </div>
+  </div>
+</mat-toolbar>
+  
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex>
+    <!--<form class="">-->
+      <span class="fa fa-calendar-check-o"> 選擇用餐日期</span><br>
+        <mat-select style="width: 30%">
+          <mat-option *ngFor="let month of months" [value]="month.value" >
+            {{ month.viewValue }}
+          </mat-option>
+        </mat-select>月
+        <mat-select style="width: 30%">
+          <mat-option *ngFor="let day of days" [value]="day.value" >
+            {{ day.viewValue }}
+          </mat-option>
+        </mat-select>日
+      <br>
+      <!--<br>s-->
+      <span class="fa fa-clock-o"> 選擇用餐時間</span>
+        <mat-select>
+          <mat-option *ngFor="let hour of hours" [value]="hour.value" >
+            {{ hour.viewValue }}
+          </mat-option>
+        </mat-select>
+      <br>
+      <span class="fa fa-users"> 選擇用餐人數</span>
+        <mat-select>
+          <mat-option *ngFor="let user of users" [value]="user.value" >
+            {{ user.viewValue }}
+          </mat-option>
+        </mat-select>
+      <br>
+      <h4>訂位確認，請填寫詳細資料：</h4>
+      <span class="fa fa-address-book"></span>
+        <mat-form-field>
+          <input matInput placeholder="您的大名">
+        </mat-form-field>
+      <span class="fa fa-phone"></span>
+        <mat-form-field>
+          <input matInput placeholder="您的手機號碼">
+        </mat-form-field>
+      <br>
+    <!--</form>-->
+  </div>
+
+</div>

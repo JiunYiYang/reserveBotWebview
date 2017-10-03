@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// some basic resets 
+
+body { 
+  padding: 0; 
+  margin: 0; 
+  font-family: '微軟正黑體', 'Roboto', sans-serif; 
+}
+
+mat-toolbar {
+    background: #746;
+    color: #f3f3f3;
+}
+
+.container {
+    display: flex;
+    margin: 30px 20px;
+}
+
+.mat-select {
+    background: #f3f3f3;
+    margin: 15px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.mat-form-field, input {
+    width: 100px;
+    border: transparent;
+}
