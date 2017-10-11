@@ -7,46 +7,81 @@
 </mat-toolbar>
   
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-  <div fxFlex>
-    <!--<form class="">-->
-      <span class="fa fa-calendar-check-o"> 選擇用餐日期</span><br>
-        <mat-select style="width: 30%">
-          <mat-option *ngFor="let month of months" [value]="month.value" >
-            {{ month.viewValue }}
-          </mat-option>
-        </mat-select>月
-        <mat-select style="width: 30%">
-          <mat-option *ngFor="let day of days" [value]="day.value" >
-            {{ day.viewValue }}
-          </mat-option>
-        </mat-select>日
+  <form novalidate #reserveForm="ngForm" (ngSubmit)="onSubmit()" >
+    <!--<div fxFlex>-->
+      <mat-input-container class="date">
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="選擇用餐日期" name="date" [(ngModel)]="reserve.date" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #picker></mat-datepicker>
+      </mat-input-container>
       <br>
-      <!--<br>s-->
+        <!--<span class="fa fa-calendar-check-o"> 選擇用餐日期</span><br>
+          <mat-select style="width: 30%">
+            <mat-option *ngFor="let month of months" [value]="month.value" >
+              {{ month.viewValue }}
+            </mat-option>
+          </mat-select>月
+          <mat-select style="width: 30%">
+            <mat-option *ngFor="let day of days" [value]="day.value" >
+              {{ day.viewValue }}
+            </mat-option>
+          </mat-select>日
+        <br>-->
       <span class="fa fa-clock-o"> 選擇用餐時間</span>
-        <mat-select>
-          <mat-option *ngFor="let hour of hours" [value]="hour.value" >
-            {{ hour.viewValue }}
-          </mat-option>
-        </mat-select>
+      
+          <mat-select name="time" [(ngModel)]="reserve.time">
+            <mat-option *ngFor="let hour of hours" [value]="hour.value" >
+              {{ hour.viewValue }}
+            </mat-option>
+          </mat-select>
+        
       <br>
       <span class="fa fa-users"> 選擇用餐人數</span>
-        <mat-select>
-          <mat-option *ngFor="let user of users" [value]="user.value" >
-            {{ user.viewValue }}
-          </mat-option>
-        </mat-select>
+      
+          <mat-select name="users" [(ngModel)]="reserve.users">
+            <mat-option *ngFor="let user of users" [value]="user.value" >
+              {{ user.viewValue }}
+            </mat-option>
+          </mat-select>
+        
       <br>
       <h4>訂位確認，請填寫詳細資料：</h4>
       <span class="fa fa-address-book"></span>
-        <mat-form-field>
-          <input matInput placeholder="您的大名">
-        </mat-form-field>
+        <mat-input-container>
+          <input matInput placeholder="您的大名" [(ngModel)]="reserve.name" #name="ngModel" name="name" type="text" required>
+          <mat-hint>
+            <span [hidden]="name.pristine" >
+              <span [hidden]="!name.errors?.required" >Your name is required!</span>
+            </span>
+          </mat-hint>
+        </mat-input-container>
       <span class="fa fa-phone"></span>
-        <mat-form-field>
-          <input matInput placeholder="您的手機號碼">
-        </mat-form-field>
+        <mat-input-container>
+          <input matInput placeholder="您的手機號碼" [(ngModel)]="reserve.phone" #phone="ngModel" name="phone" type="text" required>
+          <mat-hint>
+            <span [hidden]="phone.pristine" >
+              <span [hidden]="!phone.errors?.required" >Your phone is required!</span>
+            </span>
+          </mat-hint>
+        </mat-input-container>
       <br>
-    <!--</form>-->
-  </div>
+    <!--</div>-->
+    
+    <button mat-raised-button style="width: 100%" type="submit" [disabled]="reserveForm.form.invalid" >確認訂位</button>
+  </form>
 
+  <div fxFlex *ngIf="reserves">
+  <h1>Reserves</h1>
+  <p>Prewatch: {{ reserve | json }}</p>
+    <mat-list>
+      <mat-list-item *ngFor="let reserve of reserves">
+        <h4>{{ reserve.name }}</h4>
+        <p>
+          {{ reserve.phone }} <br>
+          <span>-- {{ reserve.users }} 人,  {{ reserve.date | date }}, {{ reserve.time }}</span>
+        </p>
+        <br>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>

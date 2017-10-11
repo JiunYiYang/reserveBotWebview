@@ -24,9 +24,14 @@ mat-toolbar {
     margin: 15px 0px;
     padding: 5px;
     border-radius: 5px;
+    width: 80%;
 }
 
-.mat-form-field, input {
+.mat-input-container, input {
     width: 100px;
     border: transparent;
+}
+
+.date {
+    width: 250px;
 }
