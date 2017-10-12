@@ -1,7 +1,9 @@
 import { FormBuilder, FormGroup, Validators, FormControl, FormControlName, FormControlDirective } from '@angular/forms'
 import { Component, OnInit } from '@angular/core';
+import { Location, PathLocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MatHint } from '@angular/material';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Router, ActivatedRoute, Params, NavigationCancel } from '@angular/router';
 
 import { Reserve } from './../shared/reserve';
 import { RESERVES } from './../shared/reserves';
@@ -44,24 +46,50 @@ export class FormComponent implements OnInit {
     {value: 5, viewValue: '5'},
     {value: 6, viewValue: '6'}
   ];
-  
-  constructor(private http: Http) {
-    this.reserve = {
-      name: '',
-      phone: '',
-      date: '',
-      time: '',
-      users: 0
-    };
+
+  private token;
+
+  constructor(private http: Http,
+    public route: ActivatedRoute) {
+      // router.events.subscribe(s => {
+      //   if (s instanceof NavigationCancel) {
+      //     let params = new URLSearchParams(s.url.split('#')[1]);
+      //     let token = params.get('token');
+      //     console.log(token);
+      //   }
+      // })
+        
+    //   this.route.params.subscribe((params: Params) => {
+    //     let id = params['id'];
+    //     console.log(id);
+    //   });
+
+      this.reserve = {
+        tokenid: '',
+        name: '',
+        phone: '',
+        date: '',
+        time: '',
+        users: 0
+      };
   }
 
   ngOnInit() {
+    this.route
+        .queryParams
+        .subscribe((params: Params) => {
+            let token = params['token'];
+            console.log(token);
+            this.reserve.tokenid = token;
+        })
+
   }
 
   onSubmit() {
     console.log("Reserve: ", this.reserve);
+    console.log(this.token);
+    console.log(this.reserve.tokenid);
     this.reserves.push(this.reserve);
-    this.http.post('https://restaurant.mouther.one/booking', JSON.stringify(this.reserve));
+    this.http.post('https://restaurant.mouther.one/booking', JSON.stringify(this.reserve)).subscribe(res => { console.log(res); });
   }
-
 }

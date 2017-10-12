@@ -71,17 +71,17 @@
   </form>
 
   <div fxFlex *ngIf="reserves">
-  <h1>Reserves</h1>
-  <p>Prewatch: {{ reserve | json }}</p>
+  <!--<h1>Reserves</h1>
     <mat-list>
       <mat-list-item *ngFor="let reserve of reserves">
-        <h4>{{ reserve.name }}</h4>
+        <h4>{{ reserve.name }}</h4><span> {{ reserve.token }}</span>
         <p>
           {{ reserve.phone }} <br>
           <span>-- {{ reserve.users }} 人,  {{ reserve.date | date }}, {{ reserve.time }}</span>
         </p>
         <br>
       </mat-list-item>
-    </mat-list>
+    </mat-list>-->
+    <p>Prewatch: {{ reserve | json }}</p>
   </div>
 </div>
