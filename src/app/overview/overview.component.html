@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <div fxFlex>
+    <span style="margin: 20px 20px; font-size: 36px">預約餐廳</span>
+    <span class="flex-spacer"></span>
+    <a mat-button routerLink="/form" routerLinkActive="active" style="bottom: 15%"><span class="fa fa-address-card fa-lg"></span> New Reservation</a>
+  </div>
+</mat-toolbar>
+
+<div class="o-container mat-elevation-z8">
+  <!--<div class="o-header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="輸入想看的日期、時間或人數">
+    </mat-form-field>
+  </div>-->
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!--date column-->
+    <ng-container matColumnDef="userDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> DATE </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.date}} </mat-cell>
+    </ng-container>
+
+    <!--time column-->
+    <ng-container matColumnDef="userTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> TIME </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+    </ng-container>
+    
+    <!--num column-->
+    <ng-container matColumnDef="userNum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> NUM </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.num}}人 </mat-cell>
+    </ng-container>
+
+    <!--name column-->
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> NAME </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <!--phone column-->
+    <ng-container matColumnDef="userPhone">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> PHONE </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.phone}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>

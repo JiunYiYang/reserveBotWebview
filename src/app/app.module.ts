@@ -18,6 +18,9 @@ import {
   MatNativeDateModule,
   MatHint,
   MatListModule,
+  MatTableModule,
+  MatColumnDef,
+  MatSortModule,
   CompatibilityModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,14 +30,17 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
+import { OverviewComponent } from './overview/overview.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { baseURL } from './shared/baseurl';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,8 @@ import { baseURL } from './shared/baseurl';
     MatDatepickerModule,
     MatNativeDateModule,
     MatListModule,
+    MatTableModule,
+    MatSortModule,
     FlexLayoutModule,
     CompatibilityModule,
     AppRoutingModule
