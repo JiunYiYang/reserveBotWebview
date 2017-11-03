@@ -1,20 +1,23 @@
 <mat-toolbar>
   <div fxFlex>
-    <span style="margin: 20px 20px; font-size: 36px">預約餐廳</span>
+    <span style="margin: 20px 20px; font-size: 36px">喬桌子 ChatTable</span>
     <span class="flex-spacer"></span>
     <a mat-button routerLink="/form" routerLinkActive="active" style="bottom: 15%"><span class="fa fa-address-card fa-lg"></span> New Reservation</a>
   </div>
 </mat-toolbar>
 
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <span class="fa fa-calendar-o"> 查看當天訂位狀況</span>
+    <mat-input-container class="date">
+      <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="點右邊icon挑選想看的日期" name="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" #picker></mat-datepicker>
+    </mat-input-container>
+  <span><i>待完成：1連結日期，2只篩選出當天訂位資料，3排成關聯表，縱軸時間、橫軸人數/桌號</i></span>
+</div>
+
 <div class="o-container mat-elevation-z8">
-  <!--<div class="o-header">
-    <mat-form-field floatPlaceholder="never">
-      <input matInput #filter placeholder="輸入想看的日期、時間或人數">
-    </mat-form-field>
-  </div>-->
-
   <mat-table #table [dataSource]="dataSource" matSort>
-
     <!--date column-->
     <ng-container matColumnDef="userDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> DATE </mat-header-cell>

@@ -5,4 +5,5 @@ export class Reserve {
     date: string;
     time: string;
     users: number;
+    tableNums: number;
 }

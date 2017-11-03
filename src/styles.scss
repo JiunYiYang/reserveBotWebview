@@ -20,7 +20,12 @@ mat-toolbar {
 
 .container {
     display: flex;
-    margin: 30px 20px;
+    margin: 40px 30px;
+    font-size: 18px;
+}
+
+.o-container {
+    margin: 0px 30px;
 }
 
 .mat-select {

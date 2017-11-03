@@ -1,6 +1,6 @@
 <mat-toolbar>
   <div fxFlex>
-    <span style="margin: 20px 20px; font-size: 36px">預約餐廳</span>
+    <span style="margin: 20px 20px; font-size: 36px">喬桌子 ChatTable</span>
     <span class="flex-spacer"></span>
     <a mat-button routerLink="/overview" routerLinkActive="active" style="bottom: 15%"><span class="fa fa-list fa-lg"></span> Overview</a>
   </div>
@@ -9,12 +9,13 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
   <form novalidate #reserveForm="ngForm" (ngSubmit)="onSubmit()" >
     <!--<div fxFlex>-->
-      <mat-input-container class="date">
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="選擇用餐日期" name="date" [(ngModel)]="reserve.date" >
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi="true" #picker></mat-datepicker>
-      </mat-input-container>
-      <br>
+      <span class="fa fa-calendar-o"> 選擇用餐日期</span><br>
+        <mat-input-container class="date">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="點右邊icon即可挑選" name="date" [(ngModel)]="reserve.date" >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi="true" #picker></mat-datepicker>
+        </mat-input-container>
+      <br><br>
         <!--<span class="fa fa-calendar-check-o"> 選擇用餐日期</span><br>
           <mat-select style="width: 30%">
             <mat-option *ngFor="let month of months" [value]="month.value" >
@@ -35,7 +36,8 @@
             </mat-option>
           </mat-select>
         
-      <br>
+      <br><br>
+      
       <span class="fa fa-users"> 選擇用餐人數</span>
       
           <mat-select name="users" [(ngModel)]="reserve.users">
@@ -44,7 +46,16 @@
             </mat-option>
           </mat-select>
         
-      <br>
+      <br><br>
+      <span class="fa fa-list-ol"> 選擇桌號　(1-5為單人座)</span>
+      
+          <mat-select name="tableNums" [(ngModel)]="reserve.tableNums">
+            <mat-option *ngFor="let tableNum of tableNums" [value]="tableNum.value" >
+              {{ tableNum.viewValue }}
+            </mat-option>
+          </mat-select>
+        
+      <br><br>
       <h4>訂位確認，請填寫詳細資料：</h4>
       <span class="fa fa-address-book"></span>
         <mat-input-container>
@@ -64,7 +75,7 @@
             </span>
           </mat-hint>
         </mat-input-container>
-      <br>
+      <br><br>
     <!--</div>-->
     
     <button mat-raised-button style="width: 100%" type="submit" [disabled]="reserveForm.form.invalid" >確認訂位</button>

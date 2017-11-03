@@ -19,6 +19,8 @@ import 'rxjs/add/observable/of';
 
 export class OverviewComponent implements OnInit {
   displayedColumns = ['userDate', 'userTime', 'userNum', 'userName', 'userPhone'];
+  minDate = new Date(2017, 9, 12);
+  maxDate = new Date(2017, 9, 19);
   userDatabase = new UserDatabase();
   dataSource: UserDataSource | null;
 

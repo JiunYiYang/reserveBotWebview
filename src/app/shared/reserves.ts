@@ -7,7 +7,8 @@ export const RESERVES: Reserve[] = [
         phone: '12345678',
         date: '2017-10-16',
         time: '12:00',
-        users: 1
+        users: 1,
+        tableNums: 3
     },
     {
         tokenid: '729379013',
@@ -15,6 +16,7 @@ export const RESERVES: Reserve[] = [
         phone: '12332378',
         date: '2017-10-12',
         time: '12:30',
-        users: 2
+        users: 2,
+        tableNums: 9
     }
 ];
